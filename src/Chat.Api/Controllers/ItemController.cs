@@ -23,16 +23,7 @@ public class ItemController : ControllerBase
     public async Task<ActionResult<GetItemViewModel>> Get(int id)
     {
         var result = await _mediator.Send(_mapper.Map<GetItemCommand>(new GetItemViewModel() {Id = id}));
-
         var resultViewModel = _mapper.Map<GetItemViewModel>(result);
-
-        // var resultViewModel = new GetItemViewModel()
-        // {
-        //     Id = result.Id,
-        //     Name = result.Name,
-        //     StatusName = result.Status.ToString(),
-        //     Status = (HttpModels.Status)result.Status
-        // };
 
         return resultViewModel;
     }
@@ -41,7 +32,6 @@ public class ItemController : ControllerBase
     public async Task<ActionResult<ItemViewModel>> Post(ItemViewModel model)
     {
         var result = await _mediator.Send(_mapper.Map<PostItemCommand>(model));
-
         var resultViewModel = _mapper.Map<ItemViewModel>(result);
 
         return resultViewModel;
